@@ -1,76 +1,74 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <style>
-        #c2 {
-            background-image: url(assets/image/sfondo.png);
-            background-repeat: no-repeat;
+        body {
+            background: black;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
         }
-        #c1 {
-            display: none;
+        .box {
+            position: relative;
+            width: 700px;
         }
-        #video {
-            opacity: 0;
+        video {
+            outline: none;
         }
     </style>
 </head>
-
 <body>
-<div>
-    <video playsinline="true" controls autoplay muted="true" id="video">
-        <source src="assets/videos/corridoio.mp4" type="video/mp4">
-    </video>
-</div>
-<div>
-    <canvas id="c1" width="320" height="192"></canvas>
-    <canvas id="c2" width="320" height="192"></canvas>
-</div>
-<script>
-    let processor = {
-        timerCallback: function() {
-            if (this.video.paused || this.video.ended) {
-                return;
+    <video class="vid" src="./assets/videos/sfondo.mp4" autoplay controls muted loop playsinline width="700"></video>
+    <div class="box">
+        <canvas width="7000"></canvas>
+    </div>
+
+    <script>
+        const box = document.querySelector('.box');
+        const video = document.querySelector('.vid');
+        let width = video.clientWidth;
+        let height = video.clientHeight;
+
+        const c = document.querySelector('canvas');
+        c.setAttribute('height', height);
+        const ctx = c.getContext('2d');
+        video.addEventListener('play', drawVid);
+
+        function drawVid () {
+            ctx.drawImage(video, 0, 0, width, height);
+            //remove green background
+            let frame = ctx.getImageData(0, 0, width, height);
+            for ( let i = 0; i < frame.data.length; i += 4 ) {
+                let r = frame.data[i]; //red
+                let g = frame.data[i + 1] //green
+                let b = frame.data[i + 2] //blue
+
+                //green
+
+                if ( (r < 80 && g > 80 && b > 80) || (r > 70 && r < 150 && g > 120 && g < 200 && b > 70 && b < 150) ) {
+                    frame.data[i + 3] = 0 //alpha
+                }
+
+                //yellow
+
+                // if ( r > 90 && g > 90 && b < 50 ) {
+                //     frame.data[i + 3] = 0 //alpha
+                // }
+
+                //blue
+
+                // if ( r > 90 && g > 90 && b < 50 ) {
+                //     frame.data[i + 3] = 0 //alpha
+                // }
             }
-            this.computeFrame();
-            let self = this;
-            setTimeout(function () {
-                self.timerCallback();
-            }, 0);
-        },
-
-        doLoad: function() {
-            this.video = document.getElementById("video");
-            this.c1 = document.getElementById("c1");
-            this.ctx1 = this.c1.getContext("2d");
-            this.c2 = document.getElementById("c2");
-            this.ctx2 = this.c2.getContext("2d");
-            let self = this;
-            this.video.addEventListener("play", function() {
-                self.width = self.video.videoWidth / 6;
-                self.height = self.video.videoHeight / 6;
-                self.timerCallback();
-            }, false);
-        },
-
-        computeFrame: function() {
-            this.ctx1.drawImage(this.video, 0, 0, this.width, this.height);
-            let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
-            let l = frame.data.length / 4;
-
-            for (let i = 0; i < l; i++) {
-                let r = frame.data[i * 4];
-                let g = frame.data[i * 4 + 1];
-                let b = frame.data[i * 4 + 2];
-                if (g > 168 && r < 52 && b > 83)
-                    frame.data[i * 4 + 3] = 0;
-            }
-            this.ctx2.putImageData(frame, 0, 0);
+            ctx.putImageData(frame, 0, 0);
+            requestAnimationFrame(drawVid);
         }
-    };
-
-    document.addEventListener("DOMContentLoaded", () => {
-        processor.doLoad();
-    });
-</script>
+    </script>
 </body>
 </html>
