@@ -28,6 +28,8 @@
         <canvas width="7000"></canvas>
     </div>
 
+    <a onclick="toggleMute()">Toggle Mute</a>
+
     <script>
         const box = document.querySelector('.box');
         const video = document.querySelector('.vid');
@@ -70,9 +72,9 @@
             requestAnimationFrame(drawVid);
         }
 
-        setTimeout(() => {
+        function toggleMute(){
             video.muted = !video.muted;
-        }, 3000)
+        }
 
     </script>
 </body>
