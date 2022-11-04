@@ -70,7 +70,9 @@
             requestAnimationFrame(drawVid);
         }
 
-        video.muted = !video.muted;
+        setTimeout(() => {
+            video.muted = !video.muted;
+        }, 3000)
 
     </script>
 </body>
