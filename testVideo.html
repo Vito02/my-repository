@@ -8,7 +8,7 @@
     <title>Document</title>
     <style>
         body {
-            background: white;
+            background: black;
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
@@ -27,8 +27,6 @@
     <div class="box">
         <canvas width="7000"></canvas>
     </div>
-
-    <a onclick="toggleMute()">Toggle Mute</a>
 
     <script>
         const box = document.querySelector('.box');
@@ -72,9 +70,9 @@
             requestAnimationFrame(drawVid);
         }
 
-        function toggleMute(){
+        setTimeout(() => {
             video.muted = !video.muted;
-        }
+        }, 5000)
 
     </script>
 </body>
