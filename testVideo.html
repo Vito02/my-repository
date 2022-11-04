@@ -8,7 +8,7 @@
     <title>Document</title>
     <style>
         body {
-            background: black;
+            background: white;
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
@@ -27,6 +27,8 @@
     <div class="box">
         <canvas width="7000"></canvas>
     </div>
+
+    <a id="nonMettereA" onclick="toggleMute()" style="overflow: hidden">Toggle Mute</a>
 
     <script>
         const box = document.querySelector('.box');
@@ -71,8 +73,12 @@
         }
 
         setTimeout(() => {
+            document.getElementById('nonMettereA').click();
+        }, 1000)
+
+        function toggleMute(){
             video.muted = !video.muted;
-        }, 5000)
+        }
 
     </script>
 </body>
