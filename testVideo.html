@@ -23,12 +23,12 @@
     </style>
 </head>
 <body>
-    <video class="vid" src="./assets/videos/sfondo.mp4" autoplay muted playsinline width="700"></video>
+    <video class="vid" src="./assets/videos/sfondo.mp4" autoplay playsinline width="700"></video>
     <div class="box">
         <canvas width="7000"></canvas>
     </div>
 
-    <button id="nonMettereA" onclick="toggleMute()" style="overflow: hidden">Toggle Mute</button>
+<!--    <button id="nonMettereA" onclick="toggleMute()" style="overflow: hidden">Toggle Mute</button>-->
 
     <script>
         const box = document.querySelector('.box');
@@ -72,13 +72,13 @@
             requestAnimationFrame(drawVid);
         }
 
-        setTimeout(() => {
-            document.getElementById('nonMettereA').click();
-        }, 1000)
-
-        function toggleMute(){
-            video.muted = !video.muted;
-        }
+        // setTimeout(() => {
+        //     document.getElementById('nonMettereA').click();
+        // }, 1000)
+        //
+        // function toggleMute(){
+        //     video.muted = !video.muted;
+        // }
 
     </script>
 </body>
