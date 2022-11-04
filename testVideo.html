@@ -77,12 +77,23 @@
         }
 
         setTimeout(() => {
-            document.getElementById('nonMettereA').click();
+            var promise = document.querySelector('video').play();
+
+            if (promise !== undefined) {
+                promise.catch(error => {
+                    // Auto-play was prevented
+                    // Show a UI element to let the user manually start playback
+                    alert('OHHHH');
+                }).then(() => {
+                    // Auto-play started
+                    video.muted = !video.muted;
+                });
+            }
         }, 1000)
 
         function toggleMute(){
             console.log('CHIAMA');
-            video.muted = !video.muted;
+
             video.play();
         }
 
