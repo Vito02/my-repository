@@ -38,7 +38,7 @@
             }
         });
 
-        document.body.addEventListener('click', test, true);
+        document.body.addEventListener('touchstart', test, true);
         function test() {
             const videoElement = document.getElementById('video');
             if (videoElement.playing) {
