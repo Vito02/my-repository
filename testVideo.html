@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Document</title>
     <style>
         body {
@@ -23,79 +24,63 @@
     </style>
 </head>
 <body>
-<iframe src="https://olafwempe.com/mp3/silence/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
 
-    <video class="vid" src="./assets/videos/sfondo.mp4" autoplay playsinline width="700"></video>
+    <video controls class="vid" id="video" src="./assets/videos/sfondo.mp4" playsinline width="700"></video>
     <div class="box">
         <canvas width="7000"></canvas>
     </div>
 
-
-
-    <button id="nonMettereA" onclick="toggleMute()" style="overflow: hidden">Toggle Mute</button>
-
     <script>
-        const box = document.querySelector('.box');
-        const video = document.querySelector('.vid');
-        let width = video.clientWidth;
-        let height = video.clientHeight;
 
-        const c = document.querySelector('canvas');
-        c.setAttribute('height', height);
-        const ctx = c.getContext('2d');
-        video.addEventListener('play', drawVid);
-
-        function drawVid () {
-            ctx.drawImage(video, 0, 0, width, height);
-            //remove green background
-            let frame = ctx.getImageData(0, 0, width, height);
-            for ( let i = 0; i < frame.data.length; i += 4 ) {
-                let r = frame.data[i]; //red
-                let g = frame.data[i + 1] //green
-                let b = frame.data[i + 2] //blue
-
-                //green
-
-                if ( (r < 80 && g > 80 && b > 80) || (r > 70 && r < 150 && g > 120 && g < 200 && b > 70 && b < 150) ) {
-                    frame.data[i + 3] = 0 //alpha
-                }
-
-                //yellow
-
-                // if ( r > 90 && g > 90 && b < 50 ) {
-                //     frame.data[i + 3] = 0 //alpha
-                // }
-
-                //blue
-
-                // if ( r > 90 && g > 90 && b < 50 ) {
-                //     frame.data[i + 3] = 0 //alpha
-                // }
+        Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
+            get: function () {
+                return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
             }
-            ctx.putImageData(frame, 0, 0);
-            requestAnimationFrame(drawVid);
-        }
+        });
 
-        setTimeout(() => {
-            var promise = document.querySelector('video').play();
-
-            if (promise !== undefined) {
-                promise.catch(error => {
-                    // Auto-play was prevented
-                    // Show a UI element to let the user manually start playback
-                    alert('OHHHH');
-                }).then(() => {
-                    // Auto-play started
-                    video.muted = !video.muted;
-                });
+        document.body.addEventListener('click', test, true);
+        function test() {
+            const videoElement = document.getElementById('video');
+            if (videoElement.playing) {
+                // video is already playing so do nothing
             }
-        }, 1000)
+            else {
+                // video is not playing
+                // so play video now
+                videoElement.play();
+            }
+        };
 
-        function toggleMute(){
-            console.log('CHIAMA');
-
-            video.play();
-        }
+        // function drawVid () {
+        //     ctx.drawImage(video, 0, 0, width, height);
+        //     //remove green background
+        //     let frame = ctx.getImageData(0, 0, width, height);
+        //     for ( let i = 0; i < frame.data.length; i += 4 ) {
+        //         let r = frame.data[i]; //red
+        //         let g = frame.data[i + 1] //green
+        //         let b = frame.data[i + 2] //blue
+        //
+        //         //green
+        //
+        //         if ( (r < 80 && g > 80 && b > 80) || (r > 70 && r < 150 && g > 120 && g < 200 && b > 70 && b < 150) ) {
+        //             frame.data[i + 3] = 0 //alpha
+        //         }
+        //
+        //         //yellow
+        //
+        //         // if ( r > 90 && g > 90 && b < 50 ) {
+        //         //     frame.data[i + 3] = 0 //alpha
+        //         // }
+        //
+        //         //blue
+        //
+        //         // if ( r > 90 && g > 90 && b < 50 ) {
+        //         //     frame.data[i + 3] = 0 //alpha
+        //         // }
+        //     }
+        //     ctx.putImageData(frame, 0, 0);
+        //     requestAnimationFrame(drawVid);
+        // }
 
     </script>
 </body>
