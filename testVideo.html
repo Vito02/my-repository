@@ -28,8 +28,6 @@
     <canvas width="7000"></canvas>
 </div>
 
-<img src="./assets/image/1.png" alt="test">
-
 <script>
     const box = document.querySelector('.box');
     const video = document.querySelector('.vid');
@@ -53,7 +51,7 @@
 
             //green
 
-            if ( (r < 130 && g > 80 && b > 65) ) {
+            if ( (r < 80 && g > 80 && b > 80) || (r > 68 && r < 141 && g > 105 && g < 200 && b > 60 && b < 137) ) {
                 frame.data[i + 3] = 0 //alpha
             }
 
