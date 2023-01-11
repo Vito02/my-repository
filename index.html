@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+    <style>
+        .main-container * {
+            font-family: Flama, Open Sans, sans-serif;
+        }
+        .main-container {
+            position: fixed;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition: visibility 0s linear 0.3s, margin-right 0s ease-in-out 0.3s, opacity 0.3s ease-in;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container-wrapper {
+            position: relative;
+            cursor: auto;
+        }
+        .close {
+            float: right;
+            margin-left: 10px;
+        }
+        .text {
+            color: white;
+            padding: 0 10px;
+            width: 245px;
+            text-align: left;
+            float: left;
+        }
+        .text .arrow {
+            height: 50px;
+            background: url(assets/image/arrow.png) no-repeat right center;
+            margin-bottom: 10px;
+            line-height: 50px;
+            vertical-align: middle;
+        }
+        .text .title {
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            width: 200px;
+            text-align: left;
+            text-transform: uppercase;
+        }
+        .text .descr {
+            width: 200px;
+        }
+        .text .descr p {
+            line-height: 22px;
+            font-weight: lighter;
+        }
+         .content {
+             float: left;
+             max-width: 750px;
+         }
+         .image-container {
+             width: 750px;
+             height: 420px;
+             overflow: hidden;
+             text-align: center;
+         }
+         .gallery-image-container {
+             position: relative;
+             width: 100%;
+             height: 100%;
+         }
+         .gallery-image {
+             max-width: 600px;
+             max-height: 100%;
+             cursor: pointer;
+         }
+         .prev {
+             display: block;
+             position: absolute;
+             width: 40px;
+             height: 100%;
+             top: 0;
+             background-repeat: no-repeat;
+             -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+             filter: alpha(opacity=30);
+             -moz-opacity: 0.3;
+             -khtml-opacity: 0.3;
+             opacity: 0.3;
+             transition: opacity .2s ease-in-out;
+             background-position: center center;
+             left: 0;
+             background-image: url(assets/image/arrow_sx.png);
+         }
+        .nextmulti {
+            position: absolute;
+            width: 44px;
+            background-position: center center;
+            background-image: url(assets/image/arrow_sx.png);
+            opacity: 0.3;
+            right: 0;
+            display: block;
+            height: 100%;
+            top: 0;
+            background-repeat: no-repeat;
+            transition: opacity .2s ease-in-out;
+            transform: rotate(180deg);
+        }
+        .prev:hover, .nextmulti:hover {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="container-wrapper">
+            <div class="close">
+                <a href="#">
+                    <img src="assets/image/close_map.png" alt="close">
+                </a>
+            </div>
+            <div class="text">
+                <div class="arrow">6 di 9</div>
+                <div class="title">Tavoli interattivi</div>
+                <div class="descr"><p>Sfoglia la gallery.</p></div>
+            </div>
+            <div class="content">
+                <div class="image-container">
+                    <div class="loading" style="display: none;"></div>
+                    <div class="gallery-image-container">
+                        <a class="prev" href="#" style="display: block;"></a>
+                            <img class="gallery-image" src="assets/image/demo.jpg">
+                        <a class="next nextmulti" href="#" style="display: block;"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

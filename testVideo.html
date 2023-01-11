@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+        .box {
+            position: relative;
+            width: 700px;
+        }
+        video {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<video class="vid" src="./assets/videos/sample_640x360.mp4" autoplay controls muted loop playsinline width="500"></video>
+<div class="box">
+    <canvas width="700" height="500"></canvas>
+</div>
+
+<!--<script>
+    const box = document.querySelector('.box');
+    const video = document.querySelector('.vid');
+    let width = video.clientWidth;
+    let height = video.clientHeight;
+    console.log(width, height);
+
+    const c = document.querySelector('canvas');
+    c.setAttribute('height', height);
+    const ctx = c.getContext('2d');
+    video.addEventListener('play', drawVid);
+
+    function drawVid () {
+        ctx.drawImage(video, 0, 0, width, height);
+        //remove green background
+        let frame = ctx.getImageData(0, 0, width, height);
+        for ( let i = 0; i < frame.data.length; i += 4 ) {
+            let r = frame.data[i]; //red
+            let g = frame.data[i + 1] //green
+            let b = frame.data[i + 2] //blue
+
+            //green
+
+            if ( (r < 90 && g > 80 && b > 0) ) {
+                frame.data[i + 3] = 0 //alpha
+            }
+
+            //yellow
+
+            // if ( r > 90 && g > 90 && b < 50 ) {
+            //     frame.data[i + 3] = 0 //alpha
+            // }
+
+            //blue
+
+            // if ( r > 90 && g > 90 && b < 50 ) {
+            //     frame.data[i + 3] = 0 //alpha
+            // }
+        }
+        ctx.putImageData(frame, 0, 0);
+        requestAnimationFrame(drawVid);
+    }
+</script>-->
+</body>
+</html>
