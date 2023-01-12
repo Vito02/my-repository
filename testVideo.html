@@ -25,11 +25,24 @@
     </style>
 </head>
 <body>
-<video class="vid" src="./assets/videos/01-TGC_Lobby_V2_Apple_ProRes_4444.mov" autoplay controls muted loop playsinline width="500"></video>
+<video id="video" class="vid" src="./assets/videos/01-TGC_Lobby_V2.webm" controls muted playsinline width="500"></video>
 <div class="box">
-    <canvas width="700" height="500"></canvas>
+    <canvas id="canvas" width="700" height="500"></canvas>
 </div>
 
+<script>
+    var canvas = document.getElementById('canvas');
+    var ctx    = canvas.getContext('2d');
+    var video  = document.getElementById('video');
+
+    video.addEventListener("play", () => {
+        function step() {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    });
+</script>
 <!--<script>
     const box = document.querySelector('.box');
     const video = document.querySelector('.vid');
@@ -53,9 +66,9 @@
 
             //green
 
-            if ( (r < 90 && g > 80 && b > 0) ) {
+            /*if ( (r < 90 && g > 80 && b > 0) ) {
                 frame.data[i + 3] = 0 //alpha
-            }
+            }*/
 
             //yellow
 
