@@ -25,12 +25,21 @@
     </style>
 </head>
 <body>
-<img src="./assets/image/programming.gif" alt="Computer man" style="width:48px;height:48px;">
+<img id="test" src="./assets/image/programming.gif" alt="Computer man" style="width:48px;height:48px;display: none">
 <!--<video id="video" class="vid" src="./assets/videos/01-TGC_Lobby_V2.webm" autoplay controls muted playsinline width="500"></video>
 <div class="box">
     <canvas id="canvas" width="700" height="500"></canvas>
 </div>-->
 
+<script>
+    var canvas = document.getElementById('test');
+    var isiPhone = /iphone/i.test(navigator.userAgent.toLowerCase());
+    if (isiPhone){
+        canvas.style.display = "block";
+    }else {
+
+    }
+</script>
 <!--<script>
     var canvas = document.getElementById('canvas');
     var ctx    = canvas.getContext('2d');
